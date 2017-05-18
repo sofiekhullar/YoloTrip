@@ -18,12 +18,12 @@ Install web pack and other dependencies
 npm i --save webpack webpack-dev-server webpack-dev-middleware webpack-hot-middleware
 npm i --save extract-text-webpack-plugin@2.0.0-rc.3
 npm i --save babel-core babel-loader babel-preset-es2015 babel-preset-react node-sass sass-loader css-loader style-loader
-npm install --save superagent
 ```
 
 Third-party package for modals
 ```
  npm install --save react-modal
+ npm install --save superagent
  ```
 
 For developer run with
