@@ -35,10 +35,12 @@ export default class Home extends Component {
     });
   }
 
-   handleTermChange(term) {
-    const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC`;
+   handleTermChange(destinationTo, destinationFrom) {
+    const url = `http://api.giphy.com/v1/gifs/search?q=${destinationTo.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC`;
 
+    console.log("handleTermChange " + destinationTo + " " + destinationFrom);
     request.get(url, (err, res) => {
+      console.log(res);
       this.setState({ gifs: res.body.data })
     });
   }
@@ -47,7 +49,7 @@ export default class Home extends Component {
     return (
       <div id="home">
         <h1>YoloTrip</h1>
-            <SearchBar onTermChange={term => this.handleTermChange(term)} />
+            <SearchBar onTermChange={this.handleTermChange} />
              <GifList  gifs={this.state.gifs}
                   onGifSelect={selectedGif => this.openModal(selectedGif) } />
             <GifModal modalIsOpen={this.state.modalIsOpen}
