@@ -1,7 +1,13 @@
 .app {
     margin: 3em auto;
     width: 90%;
+   
 }
+
+#home{
+	font-family: 'Maven Pro', sans-serif;
+}
+
 
 h1 {
 	text-align: center;
@@ -16,15 +22,16 @@ h1 {
     width: 100%;
 }
 
-.gif-item img {
-    width: 100%;
+.result-item {
+    background-color: #adadad;
 }
 
-.gif-list {
+.result-list {
     column-gap: 1.5em;
     font-size: .85em;
     margin: 1.5em 0;
     padding: 0;
+
 }
 
 .gif-modal {

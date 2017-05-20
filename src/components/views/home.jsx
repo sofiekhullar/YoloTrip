@@ -54,7 +54,7 @@ export default class Home extends Component {
 
     request.get(url, (err, res) => {
       //console.log(res.body.data);
-       console.log(res.body.Quotes);
+      //console.log(res.body.Quotes);
       this.setState({ results: res.body.Quotes })
     });
   }
