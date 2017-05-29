@@ -15,7 +15,9 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      results: [],
+      quotes: [],
+      places: [],
+      currency: null,
       selectedGif: null,
       modalIsOpen: false
 
@@ -42,7 +44,7 @@ export default class Home extends Component {
     const APIKEY = 'so692797585697172589856171924497';
     var country = 'FR'
     var currency =  'SEK';
-    var locale = 'en-US';
+    var locale = 'sv-SE';
     var error = false;
 
     const urlPlaceFrom = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
@@ -53,7 +55,6 @@ export default class Home extends Component {
 
     // Frist check the from destination
     request.get(urlPlaceFrom, (err, res) => {
-      console.log( res.body.Places[0]);
         if(res.status == 200 && res.body.Places[0] != undefined) {
         var destinationFromId = res.body.Places[0].PlaceId;
       
@@ -67,9 +68,8 @@ export default class Home extends Component {
 
         // Finally get the flights
        request.get(url, (err, res) => {
-        //console.log(res.body.data);
-        console.log(res.body.Quotes);
-        this.setState({ results: res.body.Quotes });
+        console.log(res.body);
+        this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency});
 
         });
          }else {console.log("Wrong input TO destination");} 
@@ -83,7 +83,7 @@ export default class Home extends Component {
       <div id="home">
         <h1>YoloTrip</h1>
             <SearchBar onTermChange={this.handleTermChange} />
-            <ResultList results={this.state.results} />
+            <ResultList quotes={this.state.quotes} places={this.state.places} currency={this.state.currency} />
       </div>
     );
   }
