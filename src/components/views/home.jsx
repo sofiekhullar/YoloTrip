@@ -41,17 +41,19 @@ export default class Home extends Component {
 
    handleTermChange(destinationTo, destinationFrom) {
 
-    const APIKEY = 'so692797585697172589856171924497';
+    const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
+    const APIKEYWEATHER = '9a71d4dcab054321261b7ecab76ec667'
+
     var country = 'FR'
     var currency =  'SEK';
     var locale = 'sv-SE';
     var error = false;
 
     const urlPlaceFrom = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
-                      '/?query='+ destinationFrom +'&apiKey=' + APIKEY;
+                         '/?query='+ destinationFrom +'&apiKey=' + APIKEYSKYSCANNER;
 
     const urlPlaceTo = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
-    '/?query='+ destinationTo +'&apiKey=' + APIKEY; 
+                       '/?query='+ destinationTo +'&apiKey=' + APIKEYSKYSCANNER; 
 
     // Frist check the from destination
     request.get(urlPlaceFrom, (err, res) => {
@@ -63,14 +65,19 @@ export default class Home extends Component {
       if(res.status == 200  &&  res.body.Places[0] != undefined){
         var destinationToId = res.body.Places[0].PlaceId;
 
-      const url = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
-                 locale +'/' + destinationToId + '/' + destinationFromId+ '/anytime/anytime?apikey=' + APIKEY;
+        const urlWeather = 'http://samples.openweathermap.org/data/2.5/history/city?q='+ destinationTo +'&appid=' + APIKEYWEATHER;
+
+        request.get(urlWeather, (err, res) => {
+          console.log(res.body);
+        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
+                 locale +'/' + destinationToId + '/' + destinationFromId+ '/anytime/anytime?apikey=' + APIKEYSKYSCANNER;
 
         // Finally get the flights
-       request.get(url, (err, res) => {
+        request.get(urlSkyscanner, (err, res) => {
         console.log(res.body);
         this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency});
 
+        });
         });
          }else {console.log("Wrong input TO destination");} 
       });

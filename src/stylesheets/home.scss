@@ -13,15 +13,6 @@ h1 {
 	text-align: center;
 }
 
-.gif-item {
-    box-shadow: 2px 2px 4px 0 #ccc;
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 0 0 1.5em;
-    padding: 1em;
-    width: 100%;
-}
-
 .result-item {
     background-color: #adadad;
 }
@@ -31,7 +22,6 @@ h1 {
     font-size: .85em;
     margin: 1.5em 0;
     padding: 0;
-
 }
 
 .gif-modal {
@@ -42,13 +32,36 @@ h1 {
     transform: translateX(-50%) translateY(-50%);
 }
 
-input {
-    display: block;
-    font-size: 22px;
+.inputTextFrom{
+   font-size: 30px;
+   height: 60px;
+   width: 400px;
+}
+
+.inputText {
+   font-size: 22px;
     height: 50px;
-    margin: 20px auto;
+    margin: 20px 20px;
+}
+
+.buttonShowPref , .sumbitButton{
+    background-color: #737373;
+    border: none;
+    color: white;
+    padding: 15px 32px;
     text-align: center;
-    width: 50%;
+    text-decoration: none;
+    font-size: 16px;
+    height: 70px;
+    margin:20px;
+}
+
+.buttonShowPref{
+    text-align: left;
+    width: 550px;
+}
+.SearchBar{
+    text-align: center;
 }
 
 @media only screen and (min-width: 400px) {
