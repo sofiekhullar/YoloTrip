@@ -39,12 +39,14 @@ export default class Home extends Component {
     });
   }
 
+   // If the user clicks on submit
    handleTermChange(destinationTo, destinationFrom) {
 
+    // Set up variables
     const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
     const APIKEYWEATHER = '9a71d4dcab054321261b7ecab76ec667'
 
-    var country = 'FR'
+    var country = 'SE'
     var currency =  'SEK';
     var locale = 'sv-SE';
     var error = false;
@@ -60,17 +62,27 @@ export default class Home extends Component {
         if(res.status == 200 && res.body.Places[0] != undefined) {
         var destinationFromId = res.body.Places[0].PlaceId;
       
-      // Frist check the to destination
+      // Second check the to destination -> if empty or string anywhere use anywhere
       request.get(urlPlaceTo, (err, res) => {
-      if(res.status == 200  &&  res.body.Places[0] != undefined){
-        var destinationToId = res.body.Places[0].PlaceId;
 
-        const urlWeather = 'http://samples.openweathermap.org/data/2.5/history/city?q='+ destinationTo +'&appid=' + APIKEYWEATHER;
+      if(destinationTo.length == 0 || destinationTo.toLowerCase() == 'anywhere' 
+          || res.status == 200  &&  res.body.Places[0] != undefined){
 
-        request.get(urlWeather, (err, res) => {
-          console.log(res.body);
-        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
-                 locale +'/' + destinationToId + '/' + destinationFromId+ '/anytime/anytime?apikey=' + APIKEYSKYSCANNER;
+        if(res.status == 200){
+          var destinationToId = res.body.Places[0].PlaceId;
+        }
+        else {
+          var destinationToId = 'anywhere';
+        }
+
+        // Get weather data
+        //const urlWeather = 'http://samples.openweathermap.org/data/2.5/history/city?q='+ destinationTo +'&appid=' + APIKEYWEATHER;
+        
+        //request.get(urlWeather, (err, res) => {
+        //  console.log(res.body);
+
+       const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
+                locale +'/' + destinationFromId + '/' + destinationToId + '/anytime/anytime?apikey=' + APIKEYSKYSCANNER;
 
         // Finally get the flights
         request.get(urlSkyscanner, (err, res) => {
@@ -78,7 +90,7 @@ export default class Home extends Component {
         this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency});
 
         });
-        });
+        //});
          }else {console.log("Wrong input TO destination");} 
       });
     }else {console.log("Wrong input FROM destination");} 
