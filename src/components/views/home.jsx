@@ -41,7 +41,7 @@ export default class Home extends Component {
   }
 
    // If the user clicks on submit
-   handleTermChange(destinationTo, destinationFrom) {
+   handleTermChange(destinationTo, destinationFrom, fromWhen, fromTo){
 
     // Set up variables
     const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
@@ -51,6 +51,11 @@ export default class Home extends Component {
     var currency =  'SEK';
     var locale = 'en-US';
     var error = false;
+   
+    if(fromWhen == '' && fromTo ==''){
+      var fromWhen = 'anytime';
+      var fromTo = 'anytime';
+    }
 
     const urlPlaceFrom = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
                          '/?query='+ destinationFrom +'&apiKey=' + APIKEYSKYSCANNER;
@@ -75,18 +80,13 @@ export default class Home extends Component {
         else {
           var destinationToId = 'anywhere';
         }
-
-        // Get weather data
-        //const urlWeather = 'http://samples.openweathermap.org/data/2.5/history/city?q='+ destinationTo +'&appid=' + APIKEYWEATHER;
-        //request.get(urlWeather, (err, res) => {
-        //  console.log(res.body);
         
        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
-                locale +'/' + destinationFromId + '/' + destinationToId + '/anytime/anytime?apikey=' + APIKEYSKYSCANNER;
+                locale +'/' + destinationFromId + '/' + destinationToId + '/'+ fromWhen +'/'+ fromTo +'?apikey=' + APIKEYSKYSCANNER;
 
         // Finally get the flights
         request.get(urlSkyscanner, (err, res) => {
-        console.log(res.body);
+        //console.log(res.body);
         this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency});
 
         });

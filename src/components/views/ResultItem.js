@@ -34,16 +34,14 @@ class ResultItem extends React.Component {
   render(){
       return (
       <div className="result-item">
-        <h2>Inbound destination {this.props.CityNameInD}, {this.props.CountryNameInD}, {this.props.NameInD} </h2>
-        <h2>Inbound Origin {this.props.CityNameInO}, {this.props.CountryNameInO}, {this.props.NameInO}</h2>
-        <h3>Inboud departure date: {this.props.departureInboundDate.slice(0,'2009-07-20'.length)}</h3>
+        <h2>Outbound destination {this.props.CityNameInD}, {this.props.CountryNameInD}, {this.props.NameInD} </h2>
+        <h2>Outbound Origin {this.props.CityNameInO}, {this.props.CountryNameInO}, {this.props.NameInO}</h2>
+        <h3>Outbound departure date: {this.props.departureOutboundDate.slice(0,'2009-07-20'.length)}</h3>
 
-        <h2>Outbound destination {this.props.CityNameOutD}, {this.props.CountryNameOutD}, {this.props.NameOutD} </h2>
-        <h2> Outbound Origin {this.props.CityNameOutO}, {this.props.CountryNameOutO}, {this.props.NameOutO} </h2>
-        <h3>Outbound Depature date: {this.props.departureOutboundDate.slice(0,'2009-07-20'.length)}</h3>
-        {this.state.showWeather && 
-          <h2>Temperature in {this.props.CityNameInO} is around {this.state.weather}</h2>
-        }
+        <h2>Inbound destination {this.props.CityNameOutD}, {this.props.CountryNameOutD}, {this.props.NameOutD} </h2>
+        <h2> Inbound Origin {this.props.CityNameOutO}, {this.props.CountryNameOutO}, {this.props.NameOutO} </h2>
+        <h3>Inbound Depature date: {this.props.departureInboundDate.slice(0,'2009-07-20'.length)}</h3>
+        {this.state.showWeather && <h2>Temperature in {this.props.CityNameInO} is around {this.state.weather}</h2>}
       </div>
     );
   }
