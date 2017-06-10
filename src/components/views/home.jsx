@@ -19,7 +19,8 @@ export default class Home extends Component {
       places: [],
       currency: null,
       selectedGif: null,
-      modalIsOpen: false
+      modalIsOpen: false,
+      weather: [],
 
     }
     this.handleTermChange = this.handleTermChange.bind(this);
@@ -77,10 +78,9 @@ export default class Home extends Component {
 
         // Get weather data
         //const urlWeather = 'http://samples.openweathermap.org/data/2.5/history/city?q='+ destinationTo +'&appid=' + APIKEYWEATHER;
-        
         //request.get(urlWeather, (err, res) => {
         //  console.log(res.body);
-
+        
        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
                 locale +'/' + destinationFromId + '/' + destinationToId + '/anytime/anytime?apikey=' + APIKEYSKYSCANNER;
 

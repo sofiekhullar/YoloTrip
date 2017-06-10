@@ -1,6 +1,7 @@
 import React from 'react';
 import ResultItem from './ResultItem';
 
+
 const ResultList = (props) => {
   	const resultItem = props.quotes.map((flight) => {
   	//console.log(props.results[1].QuoteId);
