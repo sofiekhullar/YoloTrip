@@ -6,6 +6,8 @@ import request from 'superagent';
 import GifModal from './GifModal';
 import ResultList from './ResultList';
 
+import Carousel from 'react-bootstrap/lib/Carousel';
+import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 
 export default class Home extends Component {
   componentDidMount() {
@@ -99,9 +101,31 @@ export default class Home extends Component {
   render() {
     return (
       <div id="home">
-        <h1>YoloTrip</h1>
-            <SearchBar onTermChange={this.handleTermChange} />
-            <ResultList quotes={this.state.quotes} places={this.state.places} currency={this.state.currency} />
+        <Jumbotron>
+          <h1>YoloTrip</h1>
+          <p> Make the most out of your travel, lets YoloSearch! </p>
+        </Jumbotron>
+
+<SearchBar onTermChange={this.handleTermChange} />
+<ResultList quotes={this.state.quotes} places={this.state.places} currency={this.state.currency} />
+
+  <Carousel className="carousel">
+    <Carousel.Item>
+      <img width={900} height={500}  src="/images/hotel.jpg"/>
+      <Carousel.Caption>
+        <h2>Fantasic Hotels</h2>
+        <p>Find the best hotels</p>
+      </Carousel.Caption>
+    </Carousel.Item>
+    <Carousel.Item>
+      <img width={900} height={500}  src="/images/flight.jpg"/>
+      <Carousel.Caption>
+        <h2>Best Flights</h2>
+        <p>Find cheap and comfortable flights</p>
+      </Carousel.Caption>
+    </Carousel.Item>
+  </Carousel>
+
       </div>
     );
   }
