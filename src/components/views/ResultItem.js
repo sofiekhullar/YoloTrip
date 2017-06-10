@@ -1,6 +1,7 @@
 import React from 'react';
 import request from 'superagent';
 
+
 class ResultItem extends React.Component {
   constructor(props) {
   super(props);
@@ -39,7 +40,7 @@ class ResultItem extends React.Component {
         <h3>Outbound departure date: {this.props.departureOutboundDate.slice(0,'2009-07-20'.length)}</h3>
 
         <h2>Inbound destination {this.props.CityNameOutD}, {this.props.CountryNameOutD}, {this.props.NameOutD} </h2>
-        <h2> Inbound Origin {this.props.CityNameOutO}, {this.props.CountryNameOutO}, {this.props.NameOutO} </h2>
+        <h2>Inbound Origin {this.props.CityNameOutO}, {this.props.CountryNameOutO}, {this.props.NameOutO} </h2>
         <h3>Inbound Depature date: {this.props.departureInboundDate.slice(0,'2009-07-20'.length)}</h3>
         {this.state.showWeather && <h2>Temperature in {this.props.CityNameInO} is around {this.state.weather}</h2>}
       </div>

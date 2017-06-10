@@ -6,11 +6,12 @@ var todayDate = today.getFullYear() + "-" + today.getDate() + "-" + (today.getMo
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '',
+    this.state = { value:'',
                     fromDestination: '',  
                     toDestination:'',
                     fromWhen: '',
                     toWhen:'',
+                    buget:0,
                     showOptions: false,
                   };
 
@@ -18,6 +19,7 @@ class SearchBar extends React.Component {
     this.onInputChangeTo = this.onInputChangeTo.bind(this); 
     this.onInputChangeFromWhen = this.onInputChangeFromWhen.bind(this);
     this.onInputChangeToWhen = this.onInputChangeToWhen.bind(this);
+    this.onInputChangeBudget = this.onInputChangeBudget.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
@@ -30,12 +32,17 @@ class SearchBar extends React.Component {
   }
 
 onInputChangeFromWhen(event){
+  document.getElementById('pickToDate').disabled = false;
   this.setState({fromWhen: event.target.value});
-  console.log(event.target.value);
 }
 
 onInputChangeToWhen(event){
   this.setState({toWhen: event.target.value});
+}
+
+onInputChangeBudget(event){
+   this.setState({budget: event.target.value});
+   document.getElementById('rangeValue').innerHTML = "Yolo I can spend " + event.target.value + " sek";
 }
   onFormSubmit(event) {
     event.preventDefault();
@@ -45,11 +52,10 @@ onInputChangeToWhen(event){
 } 
  handleClick() {
     console.log("Klickat!" + this.state.showOptions);
-     this.setState({
-            showOptions: !this.state.showOptions
-        });
+    this.setState({
+        showOptions: !this.state.showOptions
+      });
   }
-
   render() {
     return (
       <div className="search">
@@ -61,11 +67,15 @@ onInputChangeToWhen(event){
           <br/>
           {this.state.showOptions && <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />}
           <br/>
-          {this.state.showOptions && <span>From when:</span>}
-          {this.state.showOptions && <input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen} />}
-          {this.state.showOptions && <span>To when:</span>}
-          {this.state.showOptions && <input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.toWhen} onChange={this.onInputChangeToWhen} />   
-          }
+          {this.state.showOptions && <label>From when:</label>}
+          {this.state.showOptions && <input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen}/>}
+          {this.state.showOptions && <label>To when:</label>}
+          {this.state.showOptions && <input className="inputText" disabled="true" id="pickToDate" type="date" max={todayDate} min="2017-06-10" value={this.state.toWhen} onChange={this.onInputChangeToWhen} />}
+          <br/>
+          {this.state.showOptions && <label>How much money can you spend?</label>}
+          {this.state.showOptions &&  <input type="range" name="points" min="1000" max="10000" onChange={this.onInputChangeBudget}/>}
+          <br/>
+          {this.state.showOptions && <label id="rangeValue"></label>}
         </form>   
       </div>
     );
