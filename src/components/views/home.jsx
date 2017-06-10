@@ -21,8 +21,8 @@ export default class Home extends Component {
       selectedGif: null,
       modalIsOpen: false,
       weather: [],
-
     }
+
     this.handleTermChange = this.handleTermChange.bind(this);
   }
   
@@ -47,9 +47,9 @@ export default class Home extends Component {
     const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
     const APIKEYWEATHER = '9a71d4dcab054321261b7ecab76ec667'
 
-    var country = 'SE'
+    var country = 'US'
     var currency =  'SEK';
-    var locale = 'sv-SE';
+    var locale = 'en-US';
     var error = false;
 
     const urlPlaceFrom = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
