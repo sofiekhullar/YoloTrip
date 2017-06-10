@@ -8,6 +8,7 @@ require('./stylesheets/base.scss');
 require('./stylesheets/home.scss');
 require('./stylesheets/result.scss');
 
+
 ReactDom.render(
   <Router history={browserHistory} routes={routes} />,
   document.querySelector('#app')

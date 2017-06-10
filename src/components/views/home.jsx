@@ -4,8 +4,8 @@ import GifList from './GifList';
 import SearchBar from './SearchBar';
 import request from 'superagent';
 import GifModal from './GifModal';
-
 import ResultList from './ResultList';
+
 
 export default class Home extends Component {
   componentDidMount() {
@@ -19,10 +19,9 @@ export default class Home extends Component {
       places: [],
       currency: null,
       selectedGif: null,
-      modalIsOpen: false,
-      weather: [],
-    }
+      modalIsOpen: false
 
+    }
     this.handleTermChange = this.handleTermChange.bind(this);
   }
   
@@ -47,9 +46,9 @@ export default class Home extends Component {
     const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
     const APIKEYWEATHER = '9a71d4dcab054321261b7ecab76ec667'
 
-    var country = 'US'
+    var country = 'SE'
     var currency =  'SEK';
-    var locale = 'en-US';
+    var locale = 'sv-SE';
     var error = false;
 
     const urlPlaceFrom = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
@@ -78,9 +77,10 @@ export default class Home extends Component {
 
         // Get weather data
         //const urlWeather = 'http://samples.openweathermap.org/data/2.5/history/city?q='+ destinationTo +'&appid=' + APIKEYWEATHER;
+        
         //request.get(urlWeather, (err, res) => {
         //  console.log(res.body);
-        
+
        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
                 locale +'/' + destinationFromId + '/' + destinationToId + '/anytime/anytime?apikey=' + APIKEYSKYSCANNER;
 

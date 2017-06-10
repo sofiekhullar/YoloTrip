@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ onInputChangeWhen(event){
           <input className="inputTextFrom" placeholder="From..." type="text" value={this.state.fromDestination} onChange={this.onInputChangeFrom} />
           <input className="sumbitButton" type="submit" value="YoloSearch" />
           <br/>
-          <button className="buttonShowPref" type="button" onClick={(e) => this.handleClick(e)}>Show me more preferences:</button>
+          <Button className="buttonShowPref" onClick={(e) => this.handleClick(e)}>Show me more preferences:</Button>
           <br/>
           {this.state.showOptions && 
           <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />
