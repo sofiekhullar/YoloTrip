@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
-
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 var today = new Date();
 var todayDate = today.getFullYear() + "-" + today.getDate() + "-" + (today.getMonth()+1);
 
@@ -62,9 +62,12 @@ onInputChangeBudget(event){
       <div className="search">
         <form onSubmit={this.onFormSubmit} className="SearchBar">
           <input className="inputTextFrom" placeholder="From..." type="text" value={this.state.fromDestination} onChange={this.onInputChangeFrom} />
-          <input className="sumbitButton" type="submit" value="YoloSearch" />
-          <br/>
-          <Button className="buttonShowPref" onClick={(e) => this.handleClick(e)}>Show me more preferences:</Button>
+          <ButtonToolbar style={{textAlign: "center"}, {marginLeft: 50 + "%"}}>
+            
+          </ButtonToolbar>
+          <Button type="submit" bsStyle="primary" bsSize="large" className="submitButton" active>YoloSearch</Button>
+            <Button bsSize="large"  onClick={(e) => this.handleClick(e)} active>Show me more preferences:</Button>
+          
           <br/>
           {this.state.showOptions && <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />}
           <br/>

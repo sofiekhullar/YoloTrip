@@ -4,19 +4,28 @@
    
 }
 
+
+
 #home{
 	font-family: 'Maven Pro', sans-serif;
 }
 
 
-h1 {
+h1, p {
 	text-align: center;
 }
+
 
 .result-item {
     background-color: #adadad;
 }
 
+
+.carousel {
+    width: 800px;
+    margin:auto;
+    border-radius: 10px;
+}
 
 .result-list {
     column-gap: 1.5em;
