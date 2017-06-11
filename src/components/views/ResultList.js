@@ -4,9 +4,6 @@ import ResultItem from './ResultItem';
 
 const ResultList = (props) => {
   	const resultItem = props.quotes.map((flight) => {
-  	//console.log(props.results[1].QuoteId);
-  	//console.log("Places:  " + props.places[0].PlaceId);
-  	//console.log(flight.InboundLeg.DestinationId ) OriginId
 
   	var placesArray = props.places;
 
@@ -40,8 +37,10 @@ const ResultList = (props) => {
 	    	var NameOutO = placesArray[i].Name;
 	   }
 	  }
-  	//console.log(placesArray.filter(function(a){ return a.PlaceId == placeIdDestination })[0]);
+   
 
+    //console.log("I if: " + props.budget + " " + flight.MinPrice);
+    
     return <ResultItem key={flight.QuoteId} 
     						currency={props.currency} 
     						minPrice={flight.MinPrice} 
@@ -61,6 +60,7 @@ const ResultList = (props) => {
 
     						departureInboundDate={flight.InboundLeg.DepartureDate}
     		 				departureOutboundDate= {flight.OutboundLeg.DepartureDate}/>
+
   });
 
   return (

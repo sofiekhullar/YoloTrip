@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
                     toDestination:'',
                     fromWhen: '',
                     toWhen:'',
-                    buget:0,
+                    budget:0,
                     showOptions: false,
                   };
 
@@ -49,7 +49,7 @@ onInputChangeBudget(event){
     event.preventDefault();
     console.log("in onFormSubmit");
     //console.log('Subimtted: ' + this.state.toDestination +  '  ' + this.state.fromDestination);
-    this.props.onTermChange(this.state.toDestination, this.state.fromDestination, this.state.fromWhen, this.state.toWhen);
+    this.props.onTermChange(this.state.toDestination, this.state.fromDestination, this.state.fromWhen, this.state.toWhen, this.state.budget);
 } 
  handleClick() {
     console.log("Klickat!" + this.state.showOptions);
