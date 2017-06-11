@@ -13,7 +13,8 @@ class ResultItem extends React.Component {
       }
   }
 
-  componentDidMount(){
+  // For weather data, onlyt 500 calls per day
+  /*componentDidMount(){
     const self = this;
     const weatherKEY = '98c0acae069441c794464806171006'
     var baseURL = 'http://api.worldweatheronline.com/premium/v1/';
@@ -32,7 +33,8 @@ class ResultItem extends React.Component {
         });
     }
   });  
-}
+}*/
+
   render(){
       return (
 
@@ -44,6 +46,7 @@ class ResultItem extends React.Component {
         <h2>Inbound destination {this.props.CityNameOutD}, {this.props.CountryNameOutD}, {this.props.NameOutD} </h2>
         <h2>Inbound Origin {this.props.CityNameOutO}, {this.props.CountryNameOutO}, {this.props.NameOutO} </h2>
         <h3>Inbound Depature date: {this.props.departureInboundDate.slice(0,'2009-07-20'.length)}</h3>
+        <h2>Price: {this.props.minPrice} {this.props.currency}</h2>
         {this.state.showWeather && <h2>Temperature in {this.props.CityNameInO} is around {this.state.weather}</h2>}
       </Panel>
 

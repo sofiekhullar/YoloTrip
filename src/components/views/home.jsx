@@ -26,9 +26,11 @@ export default class Home extends Component {
       places: [],
       currency: null,
       selectedGif: null,
-      modalIsOpen: false
-
+      modalIsOpen: false,
+      weather: [],
+      budget: 0,
     }
+
     this.handleTermChange = this.handleTermChange.bind(this);
   }
   
@@ -47,20 +49,18 @@ export default class Home extends Component {
   }
 
    // If the user clicks on submit
-   handleTermChange(destinationTo, destinationFrom, fromWhen, fromTo){
-
+   handleTermChange(destinationTo, destinationFrom, fromWhen, toWhen, budget){
     // Set up variables
     const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
-    const APIKEYWEATHER = '9a71d4dcab054321261b7ecab76ec667'
 
-    var country = 'SE'
+    var country = 'US'
     var currency =  'SEK';
-    var locale = 'sv-SE';
+    var locale = 'en-US';
     var error = false;
    
-    if(fromWhen == '' && fromTo ==''){
+    if(fromWhen == '' && toWhen ==''){
       var fromWhen = 'anytime';
-      var fromTo = 'anytime';
+      var toWhen = 'anytime';
     }
 
     const urlPlaceFrom = 'http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale +
@@ -88,12 +88,12 @@ export default class Home extends Component {
         }
 
        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
-                locale +'/' + destinationFromId + '/' + destinationToId + '/'+ fromWhen +'/'+ fromTo +'?apikey=' + APIKEYSKYSCANNER;
+                locale +'/' + destinationFromId + '/' + destinationToId + '/'+ fromWhen +'/'+ toWhen +'?apikey=' + APIKEYSKYSCANNER;
 
         // Finally get the flights
         request.get(urlSkyscanner, (err, res) => {
         //console.log(res.body);
-        this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency});
+        this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency, budget:budget});
 
         });
         //});
@@ -148,7 +148,6 @@ export default class Home extends Component {
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
-
       </div>
     );
   }
