@@ -1,3 +1,5 @@
+
+
 .app {
     margin: 3em auto;
     width: 90%;
@@ -21,16 +23,12 @@ h1, p {
 }
 
 
-.carousel {
-    width: 800px;
-    margin:auto;
-    border-radius: 10px;
-}
+
 
 .result-list {
     column-gap: 1.5em;
     font-size: .85em;
-    margin: 1.5em 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -72,6 +70,15 @@ h1, p {
 }
 .SearchBar{
     text-align: center;
+    height: 500px;
+}
+.inputTextFrom{
+    margin-top: 100px;
+}
+
+
+.search{
+    background-image: url(/../../images/search.jpg);
 }
 
 @media only screen and (min-width: 400px) {

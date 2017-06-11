@@ -8,6 +8,11 @@ import ResultList from './ResultList';
 
 import Carousel from 'react-bootstrap/lib/Carousel';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
+import Navbar from 'react-bootstrap/lib/Navbar';
+import Nav from 'react-bootstrap/lib/Nav';
+import NavItem from 'react-bootstrap/lib/NavItem';
+import NavDropdown from 'react-bootstrap/lib/NavDropdown';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
 
 export default class Home extends Component {
   componentDidMount() {
@@ -101,24 +106,42 @@ export default class Home extends Component {
   render() {
     return (
       <div id="home">
-        <Jumbotron>
+        <Navbar style={{marginBottom: 0 + "px"}}>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <a href="#">YoloTrip</a>
+      </Navbar.Brand>
+    </Navbar.Header>
+    <Nav>
+      <NavItem eventKey={1} href="#">Home</NavItem>
+      <NavItem eventKey={2} href="#">About Us</NavItem>
+      <NavDropdown eventKey={3} title="Other" id="basic-nav-dropdown">
+        <MenuItem eventKey={3.1}>Action</MenuItem>
+        <MenuItem eventKey={3.2}>Another action</MenuItem>
+        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        <MenuItem divider />
+        <MenuItem eventKey={3.4}>Separated link</MenuItem>
+      </NavDropdown>
+    </Nav>
+  </Navbar>
+        <Jumbotron className="jumbo" style={{marginBottom: 0 + "px"}}>
           <h1>YoloTrip</h1>
           <p> Make the most out of your travel, lets YoloSearch! </p>
         </Jumbotron>
 
-<SearchBar onTermChange={this.handleTermChange} />
+<SearchBar className="SearchBar" onTermChange={this.handleTermChange} />
 <ResultList quotes={this.state.quotes} places={this.state.places} currency={this.state.currency} />
 
-  <Carousel className="carousel">
+  <Carousel className="carousel" style={{margin: 0 + "px"}}>
     <Carousel.Item>
-      <img width={900} height={500}  src="/images/hotel.jpg"/>
+      <img width={1400} height={500}  src="/images/hotel.jpg"/>
       <Carousel.Caption>
         <h2>Fantasic Hotels</h2>
         <p>Find the best hotels</p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
-      <img width={900} height={500}  src="/images/flight.jpg"/>
+      <img width={1400} height={500}  src="/images/flight.jpg"/>
       <Carousel.Caption>
         <h2>Best Flights</h2>
         <p>Find cheap and comfortable flights</p>
