@@ -20,10 +20,11 @@ npm i --save extract-text-webpack-plugin@2.0.0-rc.3
 npm i --save babel-core babel-loader babel-preset-es2015 babel-preset-react node-sass sass-loader css-loader style-loader
 ```
 
-Third-party package for modals
+Third-party packages
 ```
  npm install --save react-modal
  npm install --save superagent
+ npm install --save react-bootstrap
  ```
 
 For developer run with
