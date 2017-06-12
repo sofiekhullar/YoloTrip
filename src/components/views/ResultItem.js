@@ -10,6 +10,7 @@ class ResultItem extends React.Component {
   this.state = {
          weather: 0,
          showWeather: false,
+         inBudget: true,
       }
   }
 
@@ -35,9 +36,19 @@ class ResultItem extends React.Component {
   });  
 }*/
 
-  render(){
-      return (
+  withinBudget(){
+    if(this.props.budget != 0 && this.props.budget < this.props.minPrice){
+        return false;
+    }
+    else{
+        return true;
+    }
+  }
 
+
+  render(){
+      if(this.withinBudget()){
+      return (
       <Panel bsStyle="success" header={this.props.CityNameInD} style={{marginRight: 5 + "px"}}>
         <h2>Outbound destination {this.props.CityNameInD}, {this.props.CountryNameInD}, {this.props.NameInD} </h2>
         <h2>Outbound Origin {this.props.CityNameInO}, {this.props.CountryNameInO}, {this.props.NameInO}</h2>
@@ -51,6 +62,9 @@ class ResultItem extends React.Component {
       </Panel>
 
     );
+    }else {
+      return(<div></div>);
+    }
   }
 }
  

@@ -130,7 +130,7 @@ export default class Home extends Component {
         </Jumbotron>
 
 <SearchBar className="SearchBar" onTermChange={this.handleTermChange} />
-<ResultList quotes={this.state.quotes} places={this.state.places} currency={this.state.currency} />
+<ResultList quotes={this.state.quotes} places={this.state.places} currency={this.state.currency}  budget = {this.state.budget}  />
 
   <Carousel className="carousel" style={{margin: 0 + "px"}}>
     <Carousel.Item>

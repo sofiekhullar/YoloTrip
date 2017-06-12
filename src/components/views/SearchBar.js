@@ -47,7 +47,7 @@ onInputChangeBudget(event){
 }
   onFormSubmit(event) {
     event.preventDefault();
-    console.log("in onFormSubmit");
+    console.log("in onFormSubmit " + this.state.budget);
     //console.log('Subimtted: ' + this.state.toDestination +  '  ' + this.state.fromDestination);
     this.props.onTermChange(this.state.toDestination, this.state.fromDestination, this.state.fromWhen, this.state.toWhen, this.state.budget);
 } 

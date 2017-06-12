@@ -39,10 +39,9 @@ const ResultList = (props) => {
 	  }
    
 
-    //console.log("I if: " + props.budget + " " + flight.MinPrice);
-    
     return <ResultItem key={flight.QuoteId} 
     						currency={props.currency} 
+                budget= {props.budget}
     						minPrice={flight.MinPrice} 
     						CityNameInD = {CityNameInD}
     						CountryNameInD = {CountryNameInD}
