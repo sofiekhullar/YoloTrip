@@ -79,6 +79,8 @@ h1, p {
 
 .search{
     background-image: url(/../../images/search.jpg);
+    background-repeat: no-repeat;        
+    position: relative;  
 }
 
 @media only screen and (min-width: 400px) {

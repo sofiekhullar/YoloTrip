@@ -134,14 +134,14 @@ export default class Home extends Component {
 
   <Carousel className="carousel" style={{margin: 0 + "px"}}>
     <Carousel.Item>
-      <img width={1400} height={500}  src="/images/hotel.jpg"/>
+      <img width={100 + "%"} height={500}  src="/images/hotel.jpeg"/>
       <Carousel.Caption>
         <h2>Fantasic Hotels</h2>
         <p>Find the best hotels</p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
-      <img width={1400} height={500}  src="/images/flight.jpg"/>
+      <img width={100 + "%"} height={500}  src="/images/flight.jpg"/>
       <Carousel.Caption>
         <h2>Best Flights</h2>
         <p>Find cheap and comfortable flights</p>
