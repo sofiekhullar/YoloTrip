@@ -1,6 +1,17 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import Form from 'react-bootstrap/lib/Form';
+import Col from 'react-bootstrap/lib/Col';
+import HelpBlock from 'react-bootstrap/lib/HelpBlock';
+import Checkbox from 'react-bootstrap/lib/Checkbox';
+import DropdownButton from 'react-bootstrap/lib/DropdownButton';
+import Panel from 'react-bootstrap/lib/Panel';
+
+
+
 var today = new Date();
 var todayDate = today.getFullYear() + "-" + today.getDate() + "-" + (today.getMonth()+1);
 
@@ -57,19 +68,37 @@ onInputChangeBudget(event){
         showOptions: !this.state.showOptions
       });
   }
+
+
   render() {
     return (
       <div className="search">
         <form onSubmit={this.onFormSubmit} className="SearchBar">
           <input className="inputTextFrom" placeholder="From..." type="text" value={this.state.fromDestination} onChange={this.onInputChangeFrom} />
-          <ButtonToolbar style={{textAlign: "center"}, {marginLeft: 50 + "%"}}>
-            
-          </ButtonToolbar>
           <Button type="submit" bsStyle="primary" bsSize="large" className="submitButton" active>YoloSearch</Button>
-            <Button bsSize="large"  onClick={(e) => this.handleClick(e)} active>Show me more preferences:</Button>
-          
+
+
+        <DropdownButton bsSize="large"
+          id="input-dropdown-addon"
+          title="Action"
+        >
+        <Panel bsStyle="success">
+
+  <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />
           <br/>
-          {this.state.showOptions && <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />}
+<label>From when:</label>
+<input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen}/>
+<label>To when:</label>}
+<input className="inputText" disabled="true" id="pickToDate" type="date" max={todayDate} min="2017-06-10" value={this.state.toWhen} onChange={this.onInputChangeToWhen} />
+          <br/>
+<label>How much money can you spend?</label>
+<input type="range" name="points" min="1000" max="10000" onChange={this.onInputChangeBudget}/>
+          <br/>
+ <label id="rangeValue"></label>
+  </Panel>
+  </DropdownButton>
+  
+     /*       {this.state.showOptions && <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />}
           <br/>
           {this.state.showOptions && <label>From when:</label>}
           {this.state.showOptions && <input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen}/>}
@@ -80,6 +109,10 @@ onInputChangeBudget(event){
           {this.state.showOptions &&  <input type="range" name="points" min="1000" max="10000" onChange={this.onInputChangeBudget}/>}
           <br/>
           {this.state.showOptions && <label id="rangeValue"></label>}
+*/
+
+
+
         </form>   
       </div>
     );
