@@ -63,7 +63,7 @@ const ResultList = (props) => {
   });
 
   return (
-    <div className="result-list">{resultItem}</div>
+    <div id="result-list" className="result-list">{resultItem}</div>
   );
 };
 export default ResultList;

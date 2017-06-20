@@ -11,30 +11,53 @@ class ResultItem extends React.Component {
          weather: 0,
          showWeather: false,
          inBudget: true,
+         showBeerPrice: false,
+         beerPrice: 0,
       }
   }
 
-  // For weather data, onlyt 500 calls per day
-  /*componentDidMount(){
-    const self = this;
-    const weatherKEY = '98c0acae069441c794464806171006'
-    var baseURL = 'http://api.worldweatheronline.com/premium/v1/';
-    var date = this.props.departureInboundDate;
-    date = date.slice(0,'2009-07-20'.length);
-    date = "2016" + date.slice('2009'.length, date.length);
+componentDidMount(){
 
-    var url = baseURL + 'past-weather.ashx?q=' + this.props.CityNameInO + '&format=' + 'json' + '&extra=' + 'isDayTime' + '&'+ date +'=' + '2009-07-20' + '&key=' + weatherKEY;
-    var weather = 0;
-    request.get(url, (err, res) => {
-      if(res.status == 200){
-      weather = (parseInt(res.body.data.weather[0].maxtempC) + parseInt(res.body.data.weather[0].mintempC))/2;
-      self.setState({ weather: weather});
-       this.setState({
-            showWeather: !this.state.showWeather
+      const self = this;
+      var city = this.props.CityNameInO;
+      city = city.replace(" ","-");
+      var beerPrice = "https://www.numbeo.com/cost-of-living/in/" + city + "?displayCurrency=USD";
+      var beerArray, beer, beerArray2;
+      var priceFound = true;
+      
+      request
+       .get(beerPrice)
+       .end(function(err, res){
+
+          beer = res.text;          
+          beerArray = beer.split('(0.5 liter draught) </td> <td style="text-align: right" class="priceValue tr_highlighted"> ');
+         
+          if(beerArray.length > 1)
+           {
+              beerArray2 = beerArray[1].split("&nbsp");
+              self.setState({showBeerPrice: !self.state.showBeerPrice});
+              self.setState({beerPrice: beerArray2[0]});
+           }
+       });
+
+       const weatherKEY = '3a8af41b9edc4b79977153509171406'
+        var baseURL = 'http://api.worldweatheronline.com/premium/v1/';
+        var date = this.props.departureInboundDate;
+        date = date.slice(0,'2009-07-20'.length);
+        date = "2016" + date.slice('2009'.length, date.length);
+        console.log("Lets get som weather!");
+        var url = baseURL + 'past-weather.ashx?q=' + this.props.CityNameInO + '&format=' + 'json' + '&extra=' + 'isDayTime' + '&'+ date +'=' + '2009-07-20' + '&key=' + weatherKEY;
+        var weather = 0;
+        request.get(url, (err, res) => {
+          if(res.status == 200){
+          weather = (parseInt(res.body.data.weather[0].maxtempC) + parseInt(res.body.data.weather[0].mintempC))/2;
+          self.setState({ weather: weather});
+           this.setState({
+                showWeather: !this.state.showWeather
         });
-    }
-  });  
-}*/
+  }  });
+}
+
 
   withinBudget(){
     if(this.props.budget != 0 && this.props.budget < this.props.minPrice){
@@ -46,20 +69,23 @@ class ResultItem extends React.Component {
   }
 
 
+
   render(){
       if(this.withinBudget()){
       return (
-      <Panel bsStyle="success" header={this.props.CityNameInD} style={{marginRight: 5 + "px"}}>
-        <h2>Outbound destination {this.props.CityNameInD}, {this.props.CountryNameInD}, {this.props.NameInD} </h2>
-        <h2>Outbound Origin {this.props.CityNameInO}, {this.props.CountryNameInO}, {this.props.NameInO}</h2>
-        <h3>Outbound departure date: {this.props.departureOutboundDate.slice(0,'2009-07-20'.length)}</h3>
+        <div style={{paddingLeft: 100 + "px", paddingRight: 100 + "px"}}>
+        <br/>
+      <Panel bsStyle="default" header={this.props.CityNameInD + " - " + this.props.CityNameInO + " " + this.props.minPrice +" "+ this.props.currency} style={{marginRight: 5 + "px"}}>
+        <h3>{this.props.CountryNameInD}, {this.props.NameInD} - {this.props.CountryNameInO}, {this.props.NameInO}</h3>
+        <h4>{this.props.departureOutboundDate.slice(0,'2009-07-20'.length)}</h4>
 
-        <h2>Inbound destination {this.props.CityNameOutD}, {this.props.CountryNameOutD}, {this.props.NameOutD} </h2>
-        <h2>Inbound Origin {this.props.CityNameOutO}, {this.props.CountryNameOutO}, {this.props.NameOutO} </h2>
-        <h3>Inbound Depature date: {this.props.departureInboundDate.slice(0,'2009-07-20'.length)}</h3>
-        <h2>Price: {this.props.minPrice} {this.props.currency}</h2>
-        {this.state.showWeather && <h2>Temperature in {this.props.CityNameInO} is around {this.state.weather}</h2>}
+        <h3>{this.props.CountryNameOutD}, {this.props.NameOutD} - {this.props.CountryNameOutO}, {this.props.NameOutO} </h3>
+        <h4>{this.props.departureInboundDate.slice(0,'2009-07-20'.length)}</h4>
+        <h4>Price: {this.props.minPrice} {this.props.currency}</h4>
+        {this.state.showWeather && <h3>Temperature in {this.props.CityNameInO} is around {this.state.weather}</h3>}
+        {this.state.showBeerPrice && <h3>Price of beer in {this.props.CityNameInO} is {this.state.beerPrice} USD</h3>}
       </Panel>
+      </div>
 
     );
     }else {
@@ -67,5 +93,6 @@ class ResultItem extends React.Component {
     }
   }
 }
+
  
 export default ResultItem;

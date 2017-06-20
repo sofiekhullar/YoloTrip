@@ -54,7 +54,7 @@ export default class Home extends Component {
     const APIKEYSKYSCANNER = 'so692797585697172589856171924497';
 
     var country = 'US'
-    var currency =  'SEK';
+    var currency =  'USD';
     var locale = 'en-US';
     var error = false;
    
@@ -86,13 +86,13 @@ export default class Home extends Component {
         else {
           var destinationToId = 'anywhere';
         }
-
+        console.log(destinationTo);
        const urlSkyscanner = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/'+ country + '/' + currency +'/'+ 
                 locale +'/' + destinationFromId + '/' + destinationToId + '/'+ fromWhen +'/'+ toWhen +'?apikey=' + APIKEYSKYSCANNER;
 
         // Finally get the flights
         request.get(urlSkyscanner, (err, res) => {
-        //console.log(res.body);
+        console.log(res.body);
         this.setState({ quotes: res.body.Quotes, places: res.body.Places, currency:currency, budget:budget});
 
         });
@@ -113,20 +113,16 @@ export default class Home extends Component {
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>
-      <NavItem eventKey={1} href="#">Home</NavItem>
-      <NavItem eventKey={2} href="#">About Us</NavItem>
-      <NavDropdown eventKey={3} title="Other" id="basic-nav-dropdown">
-        <MenuItem eventKey={3.1}>Action</MenuItem>
-        <MenuItem eventKey={3.2}>Another action</MenuItem>
-        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.4}>Separated link</MenuItem>
+      <NavDropdown eventKey={3} title="Preferences" id="basic-nav-dropdown">
+        <MenuItem eventKey={3.1}>Currency</MenuItem>
+        <MenuItem eventKey={3.2}>Language</MenuItem>
       </NavDropdown>
     </Nav>
   </Navbar>
         <Jumbotron className="jumbo" style={{marginBottom: 0 + "px"}}>
           <h1>YoloTrip</h1>
           <p> Make the most out of your travel, lets YoloSearch! </p>
+          <br/><br/><br/><br/>
         </Jumbotron>
 
 <SearchBar className="SearchBar" onTermChange={this.handleTermChange} />

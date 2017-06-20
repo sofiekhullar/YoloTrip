@@ -54,12 +54,10 @@ onInputChangeToWhen(event){
 
 onInputChangeBudget(event){
    this.setState({budget: event.target.value});
-   document.getElementById('rangeValue').innerHTML = "Yolo I can spend " + event.target.value + " sek";
+   document.getElementById('rangeValue').innerHTML = "Yolo I can spend " + event.target.value + " USD";
 }
   onFormSubmit(event) {
     event.preventDefault();
-    console.log("in onFormSubmit " + this.state.budget);
-    //console.log('Subimtted: ' + this.state.toDestination +  '  ' + this.state.fromDestination);
     this.props.onTermChange(this.state.toDestination, this.state.fromDestination, this.state.fromWhen, this.state.toWhen, this.state.budget);
 } 
  handleClick() {
@@ -75,44 +73,26 @@ onInputChangeBudget(event){
       <div className="search">
         <form onSubmit={this.onFormSubmit} className="SearchBar">
           <input className="inputTextFrom" placeholder="From..." type="text" value={this.state.fromDestination} onChange={this.onInputChangeFrom} />
+          <br/>
+          <br/>
           <Button type="submit" bsStyle="primary" bsSize="large" className="submitButton" active>YoloSearch</Button>
 
+        <DropdownButton bsSize="large" id="input-dropdown-addon"title="More preferences"> <Panel bsStyle="">
 
-        <DropdownButton bsSize="large"
-          id="input-dropdown-addon"
-          title="Action"
-        >
-        <Panel bsStyle="success">
-
-  <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />
-          <br/>
-<label>From when:</label>
-<input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen}/>
-<label>To when:</label>}
-<input className="inputText" disabled="true" id="pickToDate" type="date" max={todayDate} min="2017-06-10" value={this.state.toWhen} onChange={this.onInputChangeToWhen} />
-          <br/>
-<label>How much money can you spend?</label>
-<input type="range" name="points" min="1000" max="10000" onChange={this.onInputChangeBudget}/>
-          <br/>
- <label id="rangeValue"></label>
-  </Panel>
-  </DropdownButton>
+      <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />
+              <br/>
+      <label>From when:</label>
+      <input className="inputText" type="date" max={todayDate} min="2017-06-14" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen}/>
+      <label>To when:</label>}
+      <input className="inputText" disabled="true" id="pickToDate" type="date" max={todayDate} min="2017-06-14" value={this.state.toWhen} onChange={this.onInputChangeToWhen} />
+              <br/>
+    <label>How much money can you spend?</label>
+    <input type="range" name="points" min="100" max="1000" onChange={this.onInputChangeBudget}/>
+              <br/>
+     <label id="rangeValue"></label>
+      </Panel>
+      </DropdownButton>
   
-     /*       {this.state.showOptions && <input className="inputText" placeholder="To..." type="text" value={this.state.toDestination} onChange={this.onInputChangeTo} />}
-          <br/>
-          {this.state.showOptions && <label>From when:</label>}
-          {this.state.showOptions && <input className="inputText" type="date" max={todayDate} min="2017-06-10" value={this.state.fromWhen} onChange={this.onInputChangeFromWhen}/>}
-          {this.state.showOptions && <label>To when:</label>}
-          {this.state.showOptions && <input className="inputText" disabled="true" id="pickToDate" type="date" max={todayDate} min="2017-06-10" value={this.state.toWhen} onChange={this.onInputChangeToWhen} />}
-          <br/>
-          {this.state.showOptions && <label>How much money can you spend?</label>}
-          {this.state.showOptions &&  <input type="range" name="points" min="1000" max="10000" onChange={this.onInputChangeBudget}/>}
-          <br/>
-          {this.state.showOptions && <label id="rangeValue"></label>}
-*/
-
-
-
         </form>   
       </div>
     );
